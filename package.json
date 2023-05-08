@@ -1,0 +1,11 @@
+{
+  "name": "powertools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/gnmyt/PowerTools.git",
+  "author": "Mathias Wagner <germannewsmaker@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
