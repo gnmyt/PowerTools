@@ -1,0 +1,1 @@
+export {SidebarHeader as default} from './SidebarHeader';
