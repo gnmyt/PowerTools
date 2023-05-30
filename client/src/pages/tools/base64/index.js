@@ -1,0 +1,1 @@
+export {Encoder as default} from "./Encoder";
