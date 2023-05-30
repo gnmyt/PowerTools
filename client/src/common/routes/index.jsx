@@ -1,6 +1,7 @@
 import {faFolder, faLock, faQrcode, faQuestionCircle, faTerminal, faUnlock} from "@fortawesome/free-solid-svg-icons";
 import Home from "@/pages/tools/general/Home";
-import Encoder from "@/pages/tools/base64/index.js";
+import Encoder from "@/pages/tools/base64/Encoder";
+import Decoder from "@/pages/tools/base64/Decoder";
 
 export const routes = {
     Allgemein: [
@@ -27,7 +28,8 @@ export const routes = {
         {
             path: '/base64/decode',
             name: 'Base64 Decode',
-            icon: faUnlock
+            icon: faUnlock,
+            component: <Decoder />
         }
     ],
     Linux: [
