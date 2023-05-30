@@ -2,10 +2,11 @@ import {useEffect, useState} from "react";
 import {useSearchParams} from "react-router-dom";
 import {Buffer} from "buffer";
 import Button from "@/common/components/Button";
-import {faCopy, faShare} from "@fortawesome/free-solid-svg-icons";
+import {faCopy, faShare, faUpload} from "@fortawesome/free-solid-svg-icons";
 import TextArea from "@/pages/tools/base64/components/TextArea";
 import InfoArea from "@/common/components/InfoArea";
 import "./styles.sass";
+import {uploadString} from "@/common/utils/file.js";
 
 export const Decoder = () => {
     const [searchParams] = useSearchParams();
@@ -27,6 +28,7 @@ export const Decoder = () => {
     return (
         <>
             <InfoArea title="Base64 Decoder" description="Gib in das Textfeld einen Text ein und das Tool dekodiert den Base64-Text">
+                <Button icon={faUpload} text={"Hochladen"} onClick={() => uploadString().then((str) => setInputString(str))} />
                 <Button icon={faShare} text="Teilen" onClick={shareLink} />
                 <Button icon={faCopy} text="Kopieren" onClick={copyToClipboard} />
             </InfoArea>
