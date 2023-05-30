@@ -3,8 +3,9 @@ import {useSearchParams} from "react-router-dom";
 import {Buffer} from "buffer";
 import Button from "@/common/components/Button";
 import {faCopy, faShare} from "@fortawesome/free-solid-svg-icons";
-import InfoArea from "@/common/components/InfoArea/index.js";
+import InfoArea from "@/common/components/InfoArea";
 import "./styles.sass";
+import TextArea from "@/pages/tools/base64/components/TextArea";
 
 export const Encoder = () => {
     const [searchParams] = useSearchParams();
@@ -32,11 +33,11 @@ export const Encoder = () => {
 
             <div className="base64-encoder">
                 <h2>Eingabe-Text</h2>
-                <textarea className="area" rows="10" value={inputString} onChange={(e) => setInputString(e.target.value)} />
+                <TextArea value={inputString} onChange={(e) => setInputString(e.target.value)} />
 
                 {outputString !== "" && <>
                     <h2>Ausgabe-Text</h2>
-                    <textarea className="area" rows="10" value={outputString} readOnly />
+                    <TextArea value={outputString} readOnly />
                 </>}
             </div>
         </>
