@@ -1,0 +1,20 @@
+@import "@/common/styles/colors"
+
+.btn
+  display: flex
+  align-items: center
+  color: $darker-white
+  background-color: transparent
+  border-radius: 1rem
+  padding: 0.7rem 1rem
+  user-select: none
+  gap: 0.5rem
+  border: 2px solid $primary
+  transition: filter 0.2s
+  will-change: filter
+  font-size: 16pt
+  font-weight: 700
+  cursor: pointer
+
+  &:hover
+    filter: brightness(1.2)
