@@ -2,6 +2,7 @@ import {faFolder, faLock, faQrcode, faQuestionCircle, faTerminal, faUnlock} from
 import Home from "@/pages/tools/general/Home";
 import Encoder from "@/pages/tools/base64/Encoder";
 import Decoder from "@/pages/tools/base64/Decoder";
+import QRCode from "@/pages/tools/general/QRCode";
 
 export const routes = {
     Allgemein: [
@@ -15,7 +16,7 @@ export const routes = {
             path: '/qr',
             name: 'QR-Code erstellen',
             icon: faQrcode,
-            component: <></>
+            component: <QRCode />
         }
     ],
     Base64: [
