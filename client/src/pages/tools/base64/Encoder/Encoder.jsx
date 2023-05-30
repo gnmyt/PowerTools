@@ -35,7 +35,8 @@ export const Encoder = () => {
 
             <div className="base64-encoder">
                 <h2>Eingabe-Text</h2>
-                <TextArea value={inputString} onChange={(e) => setInputString(e.target.value)} />
+                <TextArea value={inputString} onChange={(e) => setInputString(e.target.value)}
+                          placeholder="Gib hier den Text ein, den du kodieren möchtest" />
 
                 {outputString !== "" && <>
                     <h2>Ausgabe-Text</h2>
