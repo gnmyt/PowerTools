@@ -7,6 +7,7 @@ aside
   border-right: $dark-gray 2px solid
   height: 100vh
   overflow: hidden
+  z-index: 5
 
 .sidebar-hidden
   display: none
@@ -14,3 +15,20 @@ aside
 @media screen and (max-width: 1024px)
   aside
     position: fixed
+    transition: .5s ease-in-out
+
+  .sidebar-hidden
+    display: block
+    opacity: 100
+    transform: translateX(-20rem)
+
+  .background-overlay
+    position: fixed
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    background-color: rgba(0, 0, 0, .5)
+    transition: .5s ease-in-out
+    z-index: 1
+    backdrop-filter: blur(1px)
