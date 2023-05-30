@@ -1,9 +1,16 @@
 @import "@/common/styles/colors"
 
 aside
-  border-left: #0F1012 1px solid
+  background-color: $background
   float: left
   width: 18rem
   border-right: $dark-gray 2px solid
   height: 100vh
   overflow: hidden
+
+.sidebar-hidden
+  display: none
+
+@media screen and (max-width: 1024px)
+  aside
+    position: fixed
