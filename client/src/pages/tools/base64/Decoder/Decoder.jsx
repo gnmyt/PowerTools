@@ -35,7 +35,8 @@ export const Decoder = () => {
 
             <div className="base64-decoder">
                 <h2>Eingabe-Text</h2>
-                <TextArea value={inputString} onChange={(e) => setInputString(e.target.value)} />
+                <TextArea value={inputString} onChange={(e) => setInputString(e.target.value)}
+                          placeholder="Gib hier den Base64 String ein" />
 
                 {outputString !== "" && <>
                     <h2>Ausgabe-Text</h2>
