@@ -1,5 +1,6 @@
-import {faFolder, faLock, faQuestionCircle, faTerminal, faUnlock} from "@fortawesome/free-solid-svg-icons";
+import {faFolder, faLock, faQrcode, faQuestionCircle, faTerminal, faUnlock} from "@fortawesome/free-solid-svg-icons";
 import Home from "@/pages/tools/general/Home";
+import Encoder from "@/pages/tools/base64/index.js";
 
 export const routes = {
     Allgemein: [
@@ -8,13 +9,20 @@ export const routes = {
             name: 'Was ist das?',
             icon: faQuestionCircle,
             component: <Home />
+        },
+        {
+            path: '/qr',
+            name: 'QR-Code erstellen',
+            icon: faQrcode,
+            component: <></>
         }
     ],
     Base64: [
         {
             path: '/base64/encode',
             name: 'Base64 Encode',
-            icon: faLock
+            icon: faLock,
+            component: <Encoder />
         },
         {
             path: '/base64/decode',
