@@ -3,10 +3,10 @@ import "./styles.sass";
 import SidebarContent from "@/common/components/Sidebar/components/SidebarContent";
 import SidebarFooter from "@/common/components/Sidebar/components/SidebarFooter";
 
-export const Sidebar = () => {
+export const Sidebar = ({open, setOpen}) => {
     return (
-        <aside>
-            <SidebarHeader />
+        <aside className={open ? "" : "sidebar-hidden"}>
+            <SidebarHeader setOpen={setOpen}/>
             <SidebarContent />
             <SidebarFooter />
         </aside>
