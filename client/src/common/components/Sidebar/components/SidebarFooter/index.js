@@ -1,0 +1,1 @@
+export {SidebarFooter as default} from "./SidebarFooter";
