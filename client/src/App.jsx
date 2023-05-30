@@ -1,20 +1,18 @@
-import Sidebar from "@/common/components/Sidebar/index.js";
+import Sidebar from "@/common/components/Sidebar";
 import "@/common/styles/fonts.sass";
 import "@/common/styles/main.sass";
-
-const Content = () => {
-    return (
-        <>
-        <h1 style={{margin: 0}}>Content</h1>
-        </>
-    )
-}
+import {BrowserRouter} from "react-router-dom";
+import Header from "@/common/components/Header";
+import Content from "@/common/components/Content";
 
 const App = () => {
   return (
     <>
-      <Sidebar />
-      <Content />
+        <BrowserRouter>
+            <Sidebar />
+            <Header />
+            <Content />
+        </BrowserRouter>
     </>
   )
 }
