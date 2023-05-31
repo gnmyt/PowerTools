@@ -11,8 +11,11 @@ export const Sidebar = ({open, setOpen}) => {
         <>
             {open && <div className="background-overlay" ref={ref} onClick={() => setOpen(false)}/>}
             <aside className={open ? "" : "sidebar-hidden"} ref={ref}>
-                <SidebarHeader setOpen={setOpen}/>
-                <SidebarContent/>
+                <div>
+                    <SidebarHeader setOpen={setOpen}/>
+                    <SidebarContent/>
+                </div>
+
                 <SidebarFooter/>
             </aside>
         </>
