@@ -7,7 +7,7 @@ import Content from "@/common/components/Content";
 import {useState} from "react";
 
 const App = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(window.innerHeight >= 1024);
+    const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 1024);
 
     return (
         <>
