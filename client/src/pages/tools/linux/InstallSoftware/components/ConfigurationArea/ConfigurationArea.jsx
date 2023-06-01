@@ -9,6 +9,8 @@ import LogArea from "@/pages/tools/linux/InstallSoftware/components/Configuratio
 export const ConfigurationArea = ({current}) => {
     const [connection, setConnection] = useState(createConnection("app"));
 
+    const [connectionFailed, setConnectionFailed] = useState(false);
+
     const states = current?.configuration?.map((configuration) => {
         return {name: configuration.id, value: useState(configuration.value)}
     });
@@ -17,11 +19,21 @@ export const ConfigurationArea = ({current}) => {
     const [completedSteps, setCompletedSteps] = useState([]);
     const [failedStep, setFailedStep] = useState(null);
 
+    const disconnect = () => {
+        connection.disconnect();
+        setConnection(createConnection("app"));
+    }
+
     useEffect(() => {
         return () => {
             connection.disconnect();
         }
     }, []);
+
+    useEffect(() => {
+        if (connectionFailed)
+            setTimeout(() => setConnectionFailed(false), 2500);
+    }, [connectionFailed]);
 
     const update = () => {
         let data = {};
@@ -34,10 +46,20 @@ export const ConfigurationArea = ({current}) => {
         setFailedStep(null);
 
         connection.connect();
+
         connection.on("connect", async () => {
             connection.emit("login", {
                 host: prompt("Host", "localhost"),
                 password: prompt("Password", "password")
+            });
+
+            connection.on("login", (data) => {
+                if (data.status === "failed") {
+                    setConnectionFailed(true);
+                    disconnect();
+                } else if (data.status === "success") {
+                    connection.emit("install", {name: current.name, data})
+                }
             });
 
             connection.on("install", (data) => {
@@ -46,23 +68,19 @@ export const ConfigurationArea = ({current}) => {
                 } else if (data.status === "success") {
                     setCompletedSteps(steps => [...steps, data.step]);
                 } else if (data.status === "finished") {
-                    connection.disconnect();
-                    setConnection(createConnection("app"));
+                    disconnect();
                 } else if (data.status === "failed") {
                     setFailedStep(data.step);
-                    connection.disconnect();
-                    setConnection(createConnection("app"));
+                    disconnect();
                 }
             });
-
-            connection.on("login", () => connection.emit("install", {name: current.name, data}));
         });
 
     }
 
     return (
         <div className="configuration-area">
-            <div className="package-area">
+            <div className={"package-area" + (connectionFailed ? " package-failed" : "")}>
                 <div className="package-title">
                     <img src={current.icon} alt={current.name}/>
                     <h2>Paket: <span>{current.name}</span></h2>
