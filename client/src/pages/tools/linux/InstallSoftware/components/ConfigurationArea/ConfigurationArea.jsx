@@ -53,11 +53,11 @@ export const ConfigurationArea = ({current}) => {
                 password: prompt("Password", "password")
             });
 
-            connection.on("login", (data) => {
-                if (data.status === "failed") {
+            connection.on("login", (event) => {
+                if (event.status === "failed") {
                     setConnectionFailed(true);
                     disconnect();
-                } else if (data.status === "success") {
+                } else if (event.status === "success") {
                     connection.emit("install", {name: current.name, data})
                 }
             });
