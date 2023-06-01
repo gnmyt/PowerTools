@@ -1,0 +1,1 @@
+export {ConfigurationArea as default} from "./ConfigurationArea";
