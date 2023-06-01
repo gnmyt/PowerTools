@@ -2,6 +2,7 @@ const express = require("express");
 const http = require("http");
 const {Server} = require("socket.io");
 const handle = require("./handler/socket");
+const cors = require("cors");
 
 const app = express();
 const server = http.createServer(app);
@@ -19,6 +20,7 @@ app.use(require("./middlewares/error"));
 
 // Register middlewares
 app.use(express.json());
+app.use(cors());
 
 // Register routes
 app.get("/", (req, res) => res.json({status: "ok"}));
