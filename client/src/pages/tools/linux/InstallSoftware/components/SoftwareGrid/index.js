@@ -1,0 +1,1 @@
+export {SoftwareGrid as default} from "./SoftwareGrid.jsx";
