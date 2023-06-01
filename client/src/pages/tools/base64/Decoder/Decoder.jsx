@@ -6,7 +6,7 @@ import {faCopy, faShare, faUpload} from "@fortawesome/free-solid-svg-icons";
 import TextArea from "@/pages/tools/base64/components/TextArea";
 import InfoArea from "@/common/components/InfoArea";
 import "./styles.sass";
-import {uploadString} from "@/common/utils/file.js";
+import {uploadString} from "@/common/utils/FileUtil.js";
 
 export const Decoder = () => {
     const [searchParams] = useSearchParams();
