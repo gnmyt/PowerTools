@@ -1,0 +1,49 @@
+@import "@/common/styles/colors"
+
+.log-area
+  background-color: $black
+  border: 2px solid $dark-gray
+  border-radius: 1rem
+  padding: 1rem 1rem
+  width: 20rem
+
+  .header-area
+    display: flex
+    align-items: center
+    gap: 0.5rem
+    color: $darker-white
+
+    svg
+      font-size: 16pt
+
+    h2
+      margin: 0
+      font-size: 16pt
+
+  .log-items
+    margin-top: 1rem
+    display: flex
+    flex-direction: column
+    gap: 0.5rem
+
+    .log-item
+      display: flex
+      align-items: center
+      gap: 0.6rem
+      color: $darker-white
+
+      svg
+        color: $dark-gray
+        font-size: 20pt
+      p
+        margin: 0
+        font-size: 16pt
+        font-weight: 500
+        overflow: hidden
+        text-overflow: ellipsis
+    .icon-success
+      svg
+        color: $green
+    .icon-failed
+      svg
+        color: $red
