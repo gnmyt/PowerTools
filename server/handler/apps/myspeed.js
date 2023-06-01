@@ -51,6 +51,7 @@ module.exports = {
         {
             description: "Panel kompiliert",
             command: "cd {folder}/client && npm install --force && cd {folder} && npm run build && cp -r {folder}/client/build . && rm -rf {folder}/client/build",
+            condition: "environment=Entwicklung"
         },
         {command: "rm -rf {folder}/file.zip"},
         {
