@@ -1,0 +1,1 @@
+export {LogArea as default} from "./LogArea.jsx";
