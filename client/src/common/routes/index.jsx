@@ -1,8 +1,17 @@
-import {faFolder, faLock, faQrcode, faQuestionCircle, faTerminal, faUnlock} from "@fortawesome/free-solid-svg-icons";
+import {
+    faBox,
+    faFolder,
+    faLock,
+    faQrcode,
+    faQuestionCircle,
+    faTerminal,
+    faUnlock
+} from "@fortawesome/free-solid-svg-icons";
 import Home from "@/pages/tools/general/Home";
 import Encoder from "@/pages/tools/base64/Encoder";
 import Decoder from "@/pages/tools/base64/Decoder";
 import QRCode from "@/pages/tools/general/QRCode";
+import InstallSoftware from "@/pages/tools/linux/InstallSoftware";
 
 export const routes = {
     Allgemein: [
@@ -43,6 +52,12 @@ export const routes = {
             path: '/linux/sftp',
             name: 'Remote-SFTP',
             icon: faFolder
+        },
+        {
+            path: '/linux/software',
+            name: 'Software',
+            icon: faBox,
+            component: <InstallSoftware />
         }
     ]
 }
