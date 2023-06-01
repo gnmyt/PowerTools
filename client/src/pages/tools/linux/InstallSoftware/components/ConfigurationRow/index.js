@@ -1,0 +1,1 @@
+export {ConfigurationRow as default} from "./ConfigurationRow.jsx";
