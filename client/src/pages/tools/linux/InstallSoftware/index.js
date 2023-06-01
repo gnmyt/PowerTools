@@ -1,0 +1,1 @@
+export {InstallSoftware as default} from "./InstallSoftware.jsx";
