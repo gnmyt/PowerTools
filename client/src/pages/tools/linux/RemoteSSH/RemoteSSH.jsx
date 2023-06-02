@@ -1,6 +1,6 @@
 import InfoArea from "@/common/components/InfoArea";
 import Button from "@/common/components/Button";
-import {faGear} from "@fortawesome/free-solid-svg-icons";
+import {faGear, faServer} from "@fortawesome/free-solid-svg-icons";
 import ErrorArea from "@/common/components/ErrorArea";
 import "./styles.sass";
 import {useState} from "react";
@@ -13,7 +13,7 @@ export const RemoteSSH = () => {
     return (
         <ServerProvider>
             <InfoArea title="Remote SSH" description="Mit diesem Tool kannst du dich mit einem SSH-Server verbinden und diesen fernsteuern.">
-                <Button icon={faGear} text="Konfigurieren" onClick={() => setServerDialogOpen(true)}/>
+                <Button icon={faServer} text="Server" onClick={() => setServerDialogOpen(true)}/>
             </InfoArea>
 
             {serverDialogOpen && <ServerDialog onClose={() => setServerDialogOpen(false)}/>}

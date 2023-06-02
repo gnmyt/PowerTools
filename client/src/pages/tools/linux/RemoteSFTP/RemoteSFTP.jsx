@@ -1,6 +1,6 @@
 import InfoArea from "@/common/components/InfoArea";
 import Button from "@/common/components/Button";
-import {faGear} from "@fortawesome/free-solid-svg-icons";
+import {faGear, faServer} from "@fortawesome/free-solid-svg-icons";
 import ErrorArea from "@/common/components/ErrorArea";
 import "./styles.sass";
 import ServerDialog from "@/pages/tools/linux/components/ServerDialog/index.js";
@@ -14,7 +14,7 @@ export const RemoteSFTP = () => {
     return (
         <ServerProvider>
             <InfoArea title="Remote SFTP" description="Mit diesem Tool kannst du deine Dateien auf einem SFTP-Server verwalten">
-                <Button icon={faGear} text="Konfigurieren" onClick={() => setServerDialogOpen(true)}/>
+                <Button icon={faServer} text="Server" onClick={() => setServerDialogOpen(true)}/>
             </InfoArea>
 
             {serverDialogOpen && <ServerDialog onClose={() => setServerDialogOpen(false)}/>}
