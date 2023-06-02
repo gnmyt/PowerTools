@@ -1,0 +1,91 @@
+@import "@/common/styles/colors"
+
+.dialog-area
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, 0.6)
+  display: flex
+  align-items: center
+  z-index: 10
+  justify-content: center
+  backdrop-filter: blur(2px)
+  transition: all 0.2s
+  animation: opacity 0.3s
+
+.dialog-area-hidden
+  opacity: 0
+  animation: opacity 0.3s reverse
+
+.dialog
+  padding: 15px
+  background-color: $black
+  border-radius: 15px
+  transition: all 0.2s
+  animation: fadeIn 0.3s
+
+.dialog-hidden
+  visibility: hidden
+  opacity: 0
+  animation: fadeOut 0.3s
+
+.dialog-header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  user-select: none
+
+  .header-title
+    display: flex
+    align-items: center
+    gap: 0.5rem
+
+    svg
+      font-size: 18px
+      color: $darker-white
+
+.dialog a
+  color: $primary
+  cursor: pointer
+
+.dialog-main
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+
+.dialog-buttons
+  display: flex
+  margin-top: 5px
+  justify-content: right
+
+.dialog-text
+  font-size: 16pt
+  color: $darker-white
+  margin: 0
+
+@keyframes opacity
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+@keyframes fadeIn
+  0%
+    opacity: 0
+    transform: scale(0.4)
+    filter: blur(5px)
+  100%
+    opacity: 1
+
+@keyframes fadeOut
+  0%
+    opacity: 1
+  100%
+    opacity: 0
+    transform: scale(0.4)
+    filter: blur(5px)
