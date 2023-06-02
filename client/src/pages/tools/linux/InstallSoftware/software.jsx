@@ -1,9 +1,18 @@
+import UpdateImage from "./images/update.webp";
 import MySpeedImage from "./images/myspeed.webp";
 import DockerImage from "./images/docker.webp";
 import NextCloudImage from "./images/nextcloud.webp";
-import {faBox, faFolder, faGlobe, faKey, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faBox, faFolder, faGlobe, faInfoCircle, faKey, faUser} from "@fortawesome/free-solid-svg-icons";
 
 export default [
+    {
+        name: "Update",
+        icon: UpdateImage,
+        buttonText: "Ausführen",
+        configuration: [
+            {type: "text", id: "text", text: "Aktualisiert alle Paket-quellen & installiert Updates", icon: faInfoCircle}
+        ]
+    },
     {
         name: "MySpeed",
         icon: MySpeedImage,
