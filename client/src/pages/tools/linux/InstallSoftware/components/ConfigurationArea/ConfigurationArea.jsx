@@ -94,7 +94,7 @@ export const ConfigurationArea = ({current}) => {
                 })}
 
                 <div className="align-right">
-                    <Button icon={faDownload} text="Installieren" onClick={update}/>
+                    <Button icon={faDownload} text={current.buttonText || "Installieren"} onClick={update}/>
                 </div>
             </div>
 
