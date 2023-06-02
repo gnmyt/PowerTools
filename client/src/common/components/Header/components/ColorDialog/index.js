@@ -1,0 +1,1 @@
+export {ColorDialog as default} from "./ColorDialog";
