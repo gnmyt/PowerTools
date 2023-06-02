@@ -13,3 +13,12 @@ export const jsonRequest = async (path, headers = {}) => {
         return null;
     }
 }
+
+// Run a POST request and get the json of the response
+export const postRequest = async (path, body = {}, headers = {}) => {
+    try {
+        return (await request(path, "POST", body, {...headers, "Content-Type": "application/json"})).json();
+    } catch (e) {
+        return null;
+    }
+}
