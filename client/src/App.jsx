@@ -21,7 +21,7 @@ const App = () => {
             <StatusProvider>
                 <ToastNotificationProvider>
                     <Sidebar open={sidebarOpen} setOpen={setSidebarOpen}/>
-                    <Header open={sidebarOpen} setOpen={setSidebarOpen} />
+                    <Header open={sidebarOpen} setOpen={setSidebarOpen} color={primaryColor} setColor={setPrimaryColor} />
                     <Content />
                 </ToastNotificationProvider>
             </StatusProvider>
