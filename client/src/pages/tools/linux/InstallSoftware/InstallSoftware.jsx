@@ -6,8 +6,8 @@ import Software from "./software.jsx";
 import SoftwareGrid from "@/pages/tools/linux/InstallSoftware/components/SoftwareGrid";
 import ConfigurationArea from "@/pages/tools/linux/InstallSoftware/components/ConfigurationArea";
 import "./styles.sass";
-import ErrorArea from "@/common/components/ErrorArea/index.js";
-import {StatusContext} from "@/common/contexts/Status/index.js";
+import ErrorArea from "@/common/components/ErrorArea";
+import {StatusContext} from "@/common/contexts/Status";
 
 export const InstallSoftware = () => {
     const [currentItem, setCurrentItem] = useState(Software[0].name);
