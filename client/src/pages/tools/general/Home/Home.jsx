@@ -2,9 +2,9 @@ import "./styles.sass";
 import {faFire, faKeyboard, faTerminal, faUnlock} from "@fortawesome/free-solid-svg-icons";
 import HomeTool from "@/pages/tools/general/Home/components/HomeTool";
 import HomeElement from "@/pages/tools/general/Home/components/HomeElement";
-import ErrorArea from "@/common/components/ErrorArea/index.js";
+import ErrorArea from "@/common/components/ErrorArea";
 import {useContext} from "react";
-import {StatusContext} from "@/common/contexts/Status/index.js";
+import {StatusContext} from "@/common/contexts/Status";
 
 export const Home = () => {
     const backendAvailable = useContext(StatusContext);
