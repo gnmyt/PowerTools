@@ -2,14 +2,15 @@ import "./styles.sass";
 import ConfigurationRow from "@/pages/tools/linux/InstallSoftware/components/ConfigurationRow";
 import Button from "@/common/components/Button";
 import {faDownload} from "@fortawesome/free-solid-svg-icons";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {createConnection} from "@/common/utils/SocketUtil.js";
 import LogArea from "@/pages/tools/linux/InstallSoftware/components/ConfigurationArea/components/LogArea";
+import {ToastNotificationContext} from "@/common/contexts/ToastNotification/index.js";
 
 export const ConfigurationArea = ({current}) => {
-    const [connection, setConnection] = useState(createConnection("app"));
+    const updateToast = useContext(ToastNotificationContext);
 
-    const [connectionFailed, setConnectionFailed] = useState(false);
+    const [connection, setConnection] = useState(createConnection("app"));
 
     const states = current?.configuration?.map((configuration) => {
         return {name: configuration.id, value: useState(configuration.value)}
@@ -29,11 +30,6 @@ export const ConfigurationArea = ({current}) => {
             connection.disconnect();
         }
     }, []);
-
-    useEffect(() => {
-        if (connectionFailed)
-            setTimeout(() => setConnectionFailed(false), 2500);
-    }, [connectionFailed]);
 
     const update = () => {
         let data = {};
@@ -55,7 +51,7 @@ export const ConfigurationArea = ({current}) => {
 
             connection.on("login", (event) => {
                 if (event.status === "failed") {
-                    setConnectionFailed(true);
+                    updateToast("Verbindung zum Server fehlgeschlagen.", "red");
                     disconnect();
                 } else if (event.status === "success") {
                     connection.emit("install", {name: current.name, data})
@@ -80,7 +76,7 @@ export const ConfigurationArea = ({current}) => {
 
     return (
         <div className="configuration-area">
-            <div className={"package-area" + (connectionFailed ? " package-failed" : "")}>
+            <div className="package-area">
                 <div className="package-title">
                     <img src={current.icon} alt={current.name}/>
                     <h2>Paket: <span>{current.name}</span></h2>
@@ -94,7 +90,7 @@ export const ConfigurationArea = ({current}) => {
                 })}
 
                 <div className="align-right">
-                    <Button icon={faDownload} text={current.buttonText || "Installieren"} onClick={update}/>
+                    <Button icon={faDownload} text={current.buttonText || "Installieren"} onClick={update} />
                 </div>
             </div>
 
