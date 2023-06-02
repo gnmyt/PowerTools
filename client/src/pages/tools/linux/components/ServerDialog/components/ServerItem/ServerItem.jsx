@@ -57,7 +57,7 @@ export const ServerItem = (server) => {
         <div className="server-item">
             <div className="server-item-header">
                 <div className="server-header-left">
-                    <img src={`/assets/img/os/${server.distro}.webp`} alt={server.distro} onError={onImageError} />
+                    <img src={`/assets/img/os/${server.distro || "linux"}.webp`} alt={server.distro} onError={onImageError} />
                     <div className="header-text-area">
                         <h2>{name} (<span>{camelCase(server.distro || "linux")}</span>)</h2>
                         <p><FontAwesomeIcon icon={faAt} /> {hostname}</p>
