@@ -16,7 +16,7 @@ module.exports = (io, socket) => {
             connected = true;
             socket.emit("login", {status: "success"});
         }).connect({host: msg.host, port: msg.port || 22, username: msg.username || "root",
-            password: msg.password, privateKey: msg.privateKey
+            password: msg.password, privateKey: msg.privateKey, readyTimeout: 5000
         }).on("error", (err) => {
             socket.emit("login", {status: "failed", message: err.message});
         });
