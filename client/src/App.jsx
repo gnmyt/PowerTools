@@ -1,7 +1,6 @@
 import Sidebar from "@/common/components/Sidebar";
 import "@/common/styles/fonts.sass";
 import "@/common/styles/main.sass";
-import {BrowserRouter} from "react-router-dom";
 import Header from "@/common/components/Header";
 import Content from "@/common/components/Content";
 import {useEffect, useState} from "react";
@@ -19,15 +18,13 @@ const App = () => {
 
     return (
         <>
-            <BrowserRouter>
-                <StatusProvider>
-                    <ToastNotificationProvider>
-                        <Sidebar open={sidebarOpen} setOpen={setSidebarOpen}/>
-                        <Header open={sidebarOpen} setOpen={setSidebarOpen} />
-                        <Content/>
-                    </ToastNotificationProvider>
-                </StatusProvider>
-            </BrowserRouter>
+            <StatusProvider>
+                <ToastNotificationProvider>
+                    <Sidebar open={sidebarOpen} setOpen={setSidebarOpen}/>
+                    <Header open={sidebarOpen} setOpen={setSidebarOpen} />
+                    <Content />
+                </ToastNotificationProvider>
+            </StatusProvider>
         </>
     )
 }
