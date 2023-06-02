@@ -105,7 +105,7 @@ export const ConfigurationArea = ({current}) => {
                 })}
 
                 {servers.length !== 0 && <ConfigurationRow type="select" icon={faServer} text="Server" options={servers.map((server) => {
-                    return {value: server.id, text: server.hostname}
+                    return {value: server.id, text: (server.name || "Unbenannt") + " (" + server.hostname + ")"}
                 })} value={selectedServer} setValue={setSelectedServer} />}
 
                 <div className="align-right">
