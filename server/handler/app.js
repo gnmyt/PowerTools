@@ -67,6 +67,12 @@ module.exports = (io, socket) => {
                 if (msg?.data[key] !== value) return;
             }
 
+            if (item.replace) {
+                Object.keys(item.replace).map((key) => {
+                    item.command = item.command.replace(new RegExp(`{${key}}`, "g"), item.replace[key]());
+                });
+            }
+
             queue.push({...item, step: index+1});
 
             if (item.description)
