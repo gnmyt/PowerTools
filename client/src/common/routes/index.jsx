@@ -14,6 +14,7 @@ import QRCode from "@/pages/tools/general/QRCode";
 import InstallSoftware from "@/pages/tools/linux/InstallSoftware";
 import RemoteSSH from "@/pages/tools/linux/RemoteSSH";
 import RemoteSFTP from "@/pages/tools/linux/RemoteSFTP";
+import {createRef} from "react";
 
 export const routes = {
     Allgemein: [
@@ -21,13 +22,15 @@ export const routes = {
             path: '/',
             name: 'Was ist das?',
             icon: faQuestionCircle,
-            component: <Home />
+            component: <Home />,
+            ref: createRef()
         },
         {
             path: '/qr',
             name: 'QR-Code erstellen',
             icon: faQrcode,
-            component: <QRCode />
+            component: <QRCode />,
+            ref: createRef()
         }
     ],
     Base64: [
@@ -35,13 +38,15 @@ export const routes = {
             path: '/base64/encode',
             name: 'Base64 Encode',
             icon: faLock,
-            component: <Encoder />
+            component: <Encoder />,
+            ref: createRef()
         },
         {
             path: '/base64/decode',
             name: 'Base64 Decode',
             icon: faUnlock,
-            component: <Decoder />
+            component: <Decoder />,
+            ref: createRef()
         }
     ],
     Linux: [
@@ -49,19 +54,22 @@ export const routes = {
             path: '/linux/ssh',
             name: 'Remote-SSH',
             icon: faTerminal,
-            component: <RemoteSSH />
+            component: <RemoteSSH />,
+            ref: createRef()
         },
         {
             path: '/linux/sftp',
             name: 'Remote-SFTP',
             icon: faFolder,
-            component: <RemoteSFTP />
+            component: <RemoteSFTP />,
+            ref: createRef()
         },
         {
             path: '/linux/software',
             name: 'Software',
             icon: faBox,
-            component: <InstallSoftware />
+            component: <InstallSoftware />,
+            ref: createRef()
         }
     ]
 }
@@ -72,6 +80,10 @@ export const getByPath = (path) => {
         routes[key].forEach(route => {
             if (route.path === path) result = {...route, category: key}
         })
-    })
+    });
+
+    if (result === null)
+        result = {path: "/404", name: "404", icon: faQuestionCircle, ref: createRef()}
+
     return result;
 }
