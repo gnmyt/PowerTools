@@ -1,11 +1,12 @@
 import "./styles.sass";
 import ConfigurationRow from "@/pages/tools/linux/InstallSoftware/components/ConfigurationRow";
 import Button from "@/common/components/Button";
-import {faDownload} from "@fortawesome/free-solid-svg-icons";
+import {faDownload, faServer} from "@fortawesome/free-solid-svg-icons";
 import {useContext, useEffect, useState} from "react";
 import {createConnection} from "@/common/utils/SocketUtil.js";
 import LogArea from "@/pages/tools/linux/InstallSoftware/components/ConfigurationArea/components/LogArea";
-import {ToastNotificationContext} from "@/common/contexts/ToastNotification/index.js";
+import {ToastNotificationContext} from "@/common/contexts/ToastNotification";
+import {ServerContext} from "@/common/contexts/Server";
 
 export const ConfigurationArea = ({current}) => {
     const updateToast = useContext(ToastNotificationContext);
@@ -16,9 +17,16 @@ export const ConfigurationArea = ({current}) => {
         return {name: configuration.id, value: useState(configuration.value)}
     });
 
+    const servers = useContext(ServerContext)[0];
+    const [selectedServer, setSelectedServer] = useState(servers[0]?.id);
     const [steps, setSteps] = useState([]);
     const [completedSteps, setCompletedSteps] = useState([]);
     const [failedStep, setFailedStep] = useState(null);
+
+    useEffect(() => {
+        if (servers.length > 0 && servers.find((server) => server.id === selectedServer) === undefined)
+            setSelectedServer(servers[0].id);
+    }, [servers])
 
     const disconnect = () => {
         connection.disconnect();
@@ -32,6 +40,13 @@ export const ConfigurationArea = ({current}) => {
     }, []);
 
     const update = () => {
+        const server = servers.find((server) => server.id === selectedServer);
+
+        if (!server) {
+            updateToast("Füge erst einen Server hinzu", "red");
+            return;
+        }
+
         let data = {};
         states.forEach((state) => {
             data[state.name] = state.value[0];
@@ -45,8 +60,8 @@ export const ConfigurationArea = ({current}) => {
 
         connection.on("connect", async () => {
             connection.emit("login", {
-                host: prompt("Host", "localhost"),
-                password: prompt("Password", "password")
+                host: server.hostname, username: server.username, password: server.password,
+                privateKey: server.privateKey
             });
 
             connection.on("login", (event) => {
@@ -88,6 +103,10 @@ export const ConfigurationArea = ({current}) => {
                                              value={states.find((s) => s.name === configuration.id)?.value[0]}
                                              setValue={states.find((s) => s.name === configuration.id)?.value[1]}/>
                 })}
+
+                {servers.length !== 0 && <ConfigurationRow type="select" icon={faServer} text="Server" options={servers.map((server) => {
+                    return {value: server.id, text: server.hostname}
+                })} value={selectedServer} setValue={setSelectedServer} />}
 
                 <div className="align-right">
                     <Button icon={faDownload} text={current.buttonText || "Installieren"} onClick={update} />
