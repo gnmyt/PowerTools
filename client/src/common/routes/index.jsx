@@ -12,6 +12,8 @@ import Encoder from "@/pages/tools/base64/Encoder";
 import Decoder from "@/pages/tools/base64/Decoder";
 import QRCode from "@/pages/tools/general/QRCode";
 import InstallSoftware from "@/pages/tools/linux/InstallSoftware";
+import RemoteSSH from "@/pages/tools/linux/RemoteSSH";
+import RemoteSFTP from "@/pages/tools/linux/RemoteSFTP";
 
 export const routes = {
     Allgemein: [
@@ -46,12 +48,14 @@ export const routes = {
         {
             path: '/linux/ssh',
             name: 'Remote-SSH',
-            icon: faTerminal
+            icon: faTerminal,
+            component: <RemoteSSH />
         },
         {
             path: '/linux/sftp',
             name: 'Remote-SFTP',
-            icon: faFolder
+            icon: faFolder,
+            component: <RemoteSFTP />
         },
         {
             path: '/linux/software',
