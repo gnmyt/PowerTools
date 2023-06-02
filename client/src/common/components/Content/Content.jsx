@@ -1,10 +1,13 @@
 import "./styles.sass";
-import {getByPath, routes} from "@/common/routes";
-import {Route, Routes, useLocation} from "react-router-dom";
+import {getByPath} from "@/common/routes";
+import {useLocation, useOutlet} from "react-router-dom";
 import {useEffect} from "react";
+import {CSSTransition, SwitchTransition} from "react-transition-group";
 
 export const Content = () => {
     const location = useLocation();
+    const currentOutlet = useOutlet();
+    const { ref } = getByPath(location.pathname);
 
     useEffect(() => {
         document.title = "PowerTools - " + (getByPath(location.pathname)?.name || "404");
@@ -12,10 +15,12 @@ export const Content = () => {
 
     return (
         <div className="content-wrapper">
-            <Routes>
-                {Object.keys(routes).map((route) => (routes[route].map((route) => (
-                    <Route exact path={route.path} element={route.component}/>
-                ))))}
-            </Routes>
+            <SwitchTransition>
+                <CSSTransition key={location.pathname} timeout={300} nodeRef={ref} classNames="page" unmountOnExit>
+                    <div ref={ref} className="page">
+                        {currentOutlet}
+                    </div>
+                </CSSTransition>
+            </SwitchTransition>
         </div>);
 }
