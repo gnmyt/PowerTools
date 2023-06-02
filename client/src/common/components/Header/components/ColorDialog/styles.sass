@@ -1,0 +1,24 @@
+@import "@/common/styles/colors"
+
+.color-dialog
+  display: grid
+  grid-template-columns: repeat(5, 1fr)
+  user-select: none
+  margin: 1rem 0.5rem
+  gap: 0.5rem
+
+  .color-item
+    width: 2rem
+    height: 2rem
+    border-radius: 0.8rem
+    padding: 0.5rem
+    cursor: pointer
+
+    .color-check
+      width: 100%
+      height: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      color: $black
+      font-size: 12pt
