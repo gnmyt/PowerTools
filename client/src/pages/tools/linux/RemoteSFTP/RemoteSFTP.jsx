@@ -1,6 +1,6 @@
 import InfoArea from "@/common/components/InfoArea";
 import Button from "@/common/components/Button";
-import {faGear, faServer} from "@fortawesome/free-solid-svg-icons";
+import {faServer} from "@fortawesome/free-solid-svg-icons";
 import ErrorArea from "@/common/components/ErrorArea";
 import "./styles.sass";
 import ServerDialog from "@/pages/tools/linux/components/ServerDialog/index.js";

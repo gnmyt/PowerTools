@@ -1,6 +1,6 @@
 import InfoArea from "@/common/components/InfoArea";
 import Button from "@/common/components/Button";
-import {faGear, faServer} from "@fortawesome/free-solid-svg-icons";
+import {faServer} from "@fortawesome/free-solid-svg-icons";
 import {useContext, useState} from "react";
 import Software from "./software.jsx";
 import SoftwareGrid from "@/pages/tools/linux/InstallSoftware/components/SoftwareGrid";

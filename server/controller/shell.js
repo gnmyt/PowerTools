@@ -34,7 +34,7 @@ module.exports.checkServer = async ({hostname, username = "root", password, priv
                 });
             });
 
-        }).connect({host: hostname, port, username, password, privateKey, readyTimeout: 5000}).on("error", (err) => {
+        }).connect({host: hostname, port, username, password, privateKey, readyTimeout: 5000}).on("error", () => {
             reject("Error while connecting to server");
             session.end();
         });
