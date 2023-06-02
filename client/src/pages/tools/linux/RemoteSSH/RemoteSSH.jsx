@@ -1,7 +1,7 @@
-import InfoArea from "@/common/components/InfoArea/index.js";
-import Button from "@/common/components/Button/index.js";
+import InfoArea from "@/common/components/InfoArea";
+import Button from "@/common/components/Button";
 import {faGear} from "@fortawesome/free-solid-svg-icons";
-import ErrorArea from "@/common/components/ErrorArea/index.js";
+import ErrorArea from "@/common/components/ErrorArea";
 import "./styles.sass";
 
 export const RemoteSSH = () => {
