@@ -25,5 +25,7 @@ app.use(cors());
 // Register routes
 app.get("/", (req, res) => res.json({status: "ok"}));
 
+app.use("/server", require("./routes/server"));
+
 // Start the server
 server.listen(port, () => console.log(`Server listening on port ${port}`));
