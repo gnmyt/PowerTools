@@ -14,6 +14,7 @@ const App = () => {
 
     useEffect(() => {
         document.documentElement.style.setProperty("--primary", primaryColor);
+        localStorage.setItem("primary-color", primaryColor);
     }, [primaryColor]);
 
     return (
