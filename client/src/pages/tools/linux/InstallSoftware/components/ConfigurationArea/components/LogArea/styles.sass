@@ -4,6 +4,7 @@
   background-color: $black
   border: 2px solid $dark-gray
   border-radius: 1rem
+  box-sizing: border-box
   padding: 1rem 1rem
   width: 20rem
 
@@ -47,3 +48,8 @@
     .icon-failed
       svg
         color: $red
+
+@media screen and (max-width: 768px)
+  .log-area
+    width: 100%
+    margin-bottom: 1rem
