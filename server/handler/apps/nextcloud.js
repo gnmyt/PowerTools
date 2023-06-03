@@ -11,10 +11,6 @@ module.exports = {
             command: "if [ $EUID -ne 0 ]; then exit 1; fi"
         },
         {
-            description: "Betriebssystem prüfen",
-            command: "if [ $(lsb_release -si) != \"Debian\" ]; then exit 1; fi"
-        },
-        {
             description: "Installationsort prüfen",
             command: "if [ -d {folder} ]; then exit 1; fi"
         },
@@ -24,13 +20,18 @@ module.exports = {
         },
         {
             description: "PHP installieren",
-            command: "apt install -y sudo lsb-release ca-certificates apt-transport-https software-properties-common gnupg2"
+            command: "apt install -y sudo lsb-release ca-certificates apt-transport-https software-properties-common gnupg2",
+            os: "debian"
         },
         {
-            command: "echo \"deb https://packages.sury.org/php/ $(lsb_release -sc) main\" | tee /etc/apt/sources.list.d/sury-php.list"
+            description: "PHP installieren",
+            command: "add-apt-repository --yes ppa:ondrej/php",
+            os: "ubuntu"
         },
         {
-            command: "wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add -"
+            description: "PHP installieren",
+            command: "echo \"deb https://packages.sury.org/php/ $(lsb_release -sc) main\" | tee /etc/apt/sources.list.d/sury-php.list && wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add -",
+            os: "debian"
         },
         {command: "apt update"},
         {
