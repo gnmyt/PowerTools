@@ -5,9 +5,11 @@ import HomeElement from "@/pages/tools/general/Home/components/HomeElement";
 import ErrorArea from "@/common/components/ErrorArea";
 import {useContext} from "react";
 import {StatusContext} from "@/common/contexts/Status";
+import {useNavigate} from "react-router-dom";
 
 export const Home = () => {
     const backendAvailable = useContext(StatusContext);
+    const navigate = useNavigate();
 
     return (
         <>
@@ -20,9 +22,9 @@ export const Home = () => {
                 <HomeElement icon={faFire} text="Beliebte Tools"/>
 
                 <div className="tool-list">
-                    <HomeTool icon={faTerminal} title="Remote-SSH"
+                    <HomeTool icon={faTerminal} title="Remote-SSH" onClick={() => navigate("/linux/ssh")}
                               description="Baue über das Web eine Sitzung mit deinem Linux-Server auf"/>
-                    <HomeTool icon={faUnlock} title="Base64 Decode"
+                    <HomeTool icon={faUnlock} title="Base64 Decode" onClick={() => navigate("/base64/decode")}
                               description="Entschlüssel ganz einfach Base64-Kodierte Strings"/>
                 </div>
             </div>
