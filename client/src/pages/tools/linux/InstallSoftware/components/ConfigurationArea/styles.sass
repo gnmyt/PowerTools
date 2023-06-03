@@ -3,6 +3,7 @@
 .package-area
   background-color: $black
   border: 2px solid $dark-gray
+  box-sizing: border-box
   border-radius: 1rem
   width: 20rem
   padding: 1rem 1rem
@@ -30,3 +31,8 @@
   display: flex
   justify-content: flex-end
   height: 2.6rem
+
+@media screen and (max-width: 768px)
+  .package-area
+    width: 100%
+    margin-bottom: 1rem
