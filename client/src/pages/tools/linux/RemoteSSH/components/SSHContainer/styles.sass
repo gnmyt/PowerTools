@@ -1,0 +1,24 @@
+@import "@/common/styles/colors"
+
+.server-selection
+  display: flex
+  margin-bottom: 1rem
+  gap: 1rem
+  flex-wrap: wrap
+
+  .server-selected
+    border: 2px solid $primary
+
+
+  .server-item
+    cursor: pointer
+    display: flex
+    gap: 0.5rem
+    align-items: center
+
+    img
+      width: 1.5rem
+      height: 1.5rem
+
+    &:hover
+      border: 2px solid $primary
