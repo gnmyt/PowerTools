@@ -1,0 +1,1 @@
+export {TerminalArea as default} from "./TerminalArea.jsx";
