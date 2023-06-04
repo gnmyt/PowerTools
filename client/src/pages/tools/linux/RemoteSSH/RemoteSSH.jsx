@@ -1,24 +1,27 @@
 import InfoArea from "@/common/components/InfoArea";
 import Button from "@/common/components/Button";
 import {faServer} from "@fortawesome/free-solid-svg-icons";
-import ErrorArea from "@/common/components/ErrorArea";
-import "./styles.sass";
 import {useState} from "react";
-import ServerDialog from "@/pages/tools/linux/components/ServerDialog/index.js";
-import {ServerProvider} from "@/common/contexts/Server/index.js";
+import ServerDialog from "@/pages/tools/linux/components/ServerDialog";
+import {ServerProvider} from "@/common/contexts/Server";
+
+import "xterm/css/xterm.css";
+import "./styles.sass";
+import SSHContainer from "@/pages/tools/linux/RemoteSSH/components/SSHContainer";
 
 export const RemoteSSH = () => {
     const [serverDialogOpen, setServerDialogOpen] = useState(false);
 
     return (
         <ServerProvider>
-            <InfoArea title="Remote SSH" description="Mit diesem Tool kannst du dich mit einem SSH-Server verbinden und diesen fernsteuern.">
+            <InfoArea title="Remote SSH"
+                      description="Mit diesem Tool kannst du dich mit einem SSH-Server verbinden und diesen fernsteuern.">
                 <Button icon={faServer} text="Server" onClick={() => setServerDialogOpen(true)}/>
             </InfoArea>
 
             {serverDialogOpen && <ServerDialog onClose={() => setServerDialogOpen(false)}/>}
 
-            <ErrorArea error="Dieses Tool ist noch nicht verfügbar"/>
+            <SSHContainer />
         </ServerProvider>
     );
 
