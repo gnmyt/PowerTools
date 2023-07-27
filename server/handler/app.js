@@ -1,5 +1,6 @@
 const {Client} = require("ssh2");
 const fs = require("fs");
+const {getReleaseInformation} = require("../controller/shell");
 
 const services = fs.readdirSync(__dirname + "/apps").map((item) => item.replace(".js", ""));
 module.exports = (io, socket) => {
@@ -40,11 +41,11 @@ module.exports = (io, socket) => {
                 socket.emit("install", {status: "success", step});
                 queue.shift();
                 execQueue();
-            }).on("data", () => {});
+            }).on("data", (e) => {console.log(e.toString())});
         });
     }
 
-    socket.on("install", (msg) => {
+    socket.on("install", async (msg) => {
         if (!connected) return socket.emit("install", {status: "failed", message: "Not connected"});
         if (queue.length > 0) return socket.emit("install", {status: "failed", message: "Another installation is in progress"});
 
@@ -55,6 +56,8 @@ module.exports = (io, socket) => {
         const app = require(`./apps/${serviceName}`);
 
         let infoData = [];
+
+        const os = (await getReleaseInformation(session, false).catch(() => {}))?.id?.toLowerCase();
 
         app.steps.map((mappedItem, index) => {
             let item = {...mappedItem};
@@ -67,16 +70,18 @@ module.exports = (io, socket) => {
                 if (msg?.data[key] !== value) return;
             }
 
+            if (item.os && item.os !== os) return;
+
             if (item.replace) {
                 Object.keys(item.replace).map((key) => {
                     item.command = item.command.replace(new RegExp(`{${key}}`, "g"), item.replace[key]());
                 });
             }
 
-            queue.push({...item, step: index+1});
+            queue.push({...item, step: index + 1});
 
             if (item.description)
-                infoData.push({description: item.description, step: index+1});
+                infoData.push({description: item.description, step: index + 1});
         });
 
         socket.emit("install", {status: "info", data: infoData});
