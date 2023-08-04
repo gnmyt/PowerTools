@@ -1,0 +1,1 @@
+export {CharCounter as default} from "./CharCounter.jsx";
