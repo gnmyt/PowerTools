@@ -57,6 +57,14 @@ module.exports = {
         {
             description: "Abhängigkeiten installiert",
             command: "cd {folder} && npm install --production"
+        },
+        {
+            description: "Dienst erstellt",
+            command: "echo -e \"[Unit]\\nDescription=MySpeed\\nAfter=network.target\\n\\n[Service]\\nType=simple\\nExecStart=/usr/bin/node server\\nRestart=always\\nUser=root\\nEnvironment=NODE_ENV=production\\nWorkingDirectory={folder}\\n\\n[Install]\\nWantedBy=multi-user.target\" > /etc/systemd/system/myspeed.service"
+        },
+        {
+            description: "Dienst gestartet",
+            command: "if command -v systemctl &> /dev/null; then systemctl daemon-reload && systemctl enable myspeed && systemctl start myspeed; fi"
         }
     ]
 }
