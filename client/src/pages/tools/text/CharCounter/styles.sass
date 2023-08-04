@@ -1,0 +1,24 @@
+@import "@/common/styles/colors"
+
+.char-counter
+  display: flex
+  justify-content: space-between
+  margin-top: 1.5rem
+  gap: 1rem
+
+.counter-item
+  border: 1px solid $dark-gray
+  border-radius: 1rem
+  padding: 0 2rem
+  text-align: center
+
+  h2
+    color: $gray
+  span
+    color: $primary
+
+@media screen and (max-width: 768px)
+  .char-counter
+    flex-wrap: wrap
+  .counter-item
+    width: 100%
