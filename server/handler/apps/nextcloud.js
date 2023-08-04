@@ -29,18 +29,21 @@ module.exports = {
             os: "ubuntu"
         },
         {
-            description: "PHP installieren",
             command: "echo \"deb https://packages.sury.org/php/ $(lsb_release -sc) main\" | tee /etc/apt/sources.list.d/sury-php.list && wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add -",
             os: "debian"
         },
         {command: "apt update"},
         {
             description: "Pakete installieren",
-            command: "apt install -y unzip mariadb-server mariadb-client apache2 apache2-utils php-cli php-common php-mbstring php-gd php-imagick php-intl php-bz2 php-xml php-mysql php-zip php-dev php-curl php-fpm php-dompdf redis-server php-redis php-smbclient php-ldap wget curl unzip"
+            command: "apt install -y libmagickcore-6.q16-6-extra unzip mariadb-server mariadb-client apache2 apache2-utils php-cli php-apcu php-common php-mbstring php-gd php-imagick php-intl php-bz2 php-xml php-gmp php-bcmath php-mysql php-imagick php-zip php-dev php-curl php-fpm php-dompdf redis-server php-redis php-smbclient php-ldap wget curl unzip"
+        },
+        {
+            description: "PHP konfigurieren",
+            command: "sed -i 's/memory_limit = .*/memory_limit = 512M/' /etc/php/$(php --ini | grep Loaded | cut -d'/' -f4)/fpm/php.ini && sed -i 's/output_buffering = .*/output_buffering = Off/' /etc/php/$(php --ini | grep Loaded | cut -d'/' -f4)/fpm/php.ini && echo \"apc.enable_cli = 1\" >> /etc/php/$(php --ini | grep Loaded | cut -d'/' -f4)/cli/php.ini && systemctl restart php$(php --ini | grep Loaded | cut -d'/' -f4)-fpm"
         },
         {
             description: "Apache konfigurieren",
-            command: "a2enmod proxy_fcgi setenvif mpm_event rewrite headers env dir mime ssl http2 && a2enconf php$(php --ini | grep Loaded | cut -d'/' -f4)-fpm && systemctl reload apache2"
+            command: "a2enmod proxy_fcgi setenvif mpm_event rewrite headers env dir mime ssl http2 && a2enconf php$(php --ini | grep Loaded | cut -d'/' -f4)-fpm && systemctl restart apache2"
         },
         {command: "mkdir -p {folder}"},
         {
@@ -72,6 +75,13 @@ module.exports = {
                 "    DocumentRoot {folder}\n" +
                 "    ErrorLog \${APACHE_LOG_DIR}/error.log\n" +
                 "    CustomLog \${APACHE_LOG_DIR}/access.log combined\n" +
+                "    <IfModule mod_rewrite.c>\n" +
+                "        RewriteEngine on\n" +
+                "        RewriteRule ^/\\.well-known/carddav /remote.php/dav [R=301,L]\n" +
+                "        RewriteRule ^/\\.well-known/caldav /remote.php/dav [R=301,L]\n" +
+                "        RewriteRule ^/\\.well-known/webfinger /index.php/.well-known/webfinger [R=301,L]\n" +
+                "        RewriteRule ^/\\.well-known/nodeinfo /index.php/.well-known/nodeinfo [R=301,L]\n" +
+                "    </IfModule>\n" +
                 "    <Directory {folder}>\n" +
                 "        Require all granted\n" +
                 "        AllowOverride All\n" +
@@ -90,8 +100,13 @@ module.exports = {
                 "--admin-user='{user}' --admin-pass='{pass}'"
         },
         {
-            description: "Domain hinzufügen",
             command: "cd {folder} && sudo -su www-data php occ config:system:set trusted_domains 1 --value={domain}"
+        },
+        {
+            command: "cd {folder} && sudo -su www-data php occ config:system:set default_phone_region --value=DE"
+        },
+        {
+            command: "cd {folder} && sudo -su www-data php occ config:system:set memcache.local --value='\\OC\\Memcache\\APCu'"
         }
     ]
 }
