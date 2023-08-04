@@ -1,4 +1,5 @@
 import {
+    faArrowUp19,
     faBox,
     faFolder, faLocationPin,
     faLock,
@@ -17,6 +18,7 @@ import RemoteSFTP from "@/pages/tools/linux/RemoteSFTP";
 import {createRef} from "react";
 import Imprint from "@/pages/legal/Imprint";
 import Privacy from "@/pages/legal/Privacy";
+import CharCounter from "@/pages/tools/text/CharCounter";
 
 export const routes = {
     Allgemein: [
@@ -49,6 +51,14 @@ export const routes = {
             icon: faUnlock,
             component: <Decoder />,
             ref: createRef()
+        }
+    ],
+    Text: [
+        {
+            path: '/text/char-counter',
+            name: 'Zeichenzähler',
+            icon: faArrowUp19,
+            component: <CharCounter />
         }
     ],
     Linux: [
