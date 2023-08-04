@@ -9,7 +9,7 @@ import {
     faGlobe,
     faInfoCircle,
     faKey,
-    faLanguage, faMailBulk, faServer,
+    faLanguage,
     faUser
 } from "@fortawesome/free-solid-svg-icons";
 
