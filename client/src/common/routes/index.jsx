@@ -1,9 +1,9 @@
 import {
     faBox,
-    faFolder,
+    faFolder, faLocationPin,
     faLock,
     faQrcode,
-    faQuestionCircle,
+    faQuestionCircle, faShield,
     faTerminal,
     faUnlock
 } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +15,8 @@ import InstallSoftware from "@/pages/tools/linux/InstallSoftware";
 import RemoteSSH from "@/pages/tools/linux/RemoteSSH";
 import RemoteSFTP from "@/pages/tools/linux/RemoteSFTP";
 import {createRef} from "react";
+import Imprint from "@/pages/legal/Imprint";
+import Privacy from "@/pages/legal/Privacy";
 
 export const routes = {
     Allgemein: [
@@ -70,6 +72,20 @@ export const routes = {
             icon: faBox,
             component: <InstallSoftware />,
             ref: createRef()
+        }
+    ],
+    Rechtliches: [
+        {
+            path: '/legal/imprint',
+            name: 'Impressum',
+            component: <Imprint />,
+            icon: faLocationPin,
+        },
+        {
+            path: '/legal/privacy',
+            name: 'Datenschutz',
+            component: <Privacy />,
+            icon: faShield,
         }
     ]
 }
