@@ -41,7 +41,7 @@ module.exports = (io, socket) => {
                 socket.emit("install", {status: "success", step});
                 queue.shift();
                 execQueue();
-            }).on("data", (e) => {console.log(e.toString())});
+            }).on("data", () => {});
         });
     }
 
