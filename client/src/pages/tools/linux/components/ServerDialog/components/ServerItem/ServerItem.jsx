@@ -2,7 +2,7 @@ import "./styles.sass";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAt, faChevronDown, faChevronUp, faSave, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {useContext, useState} from "react";
-import {ServerContext} from "@/common/contexts/Server/index.js";
+import {ServerContext} from "@/common/contexts/Server";
 
 export const ServerItem = (server) => {
     const addServer = useContext(ServerContext)[1];

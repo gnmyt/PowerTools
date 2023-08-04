@@ -3,9 +3,9 @@ import Button from "@/common/components/Button";
 import {faServer} from "@fortawesome/free-solid-svg-icons";
 import ErrorArea from "@/common/components/ErrorArea";
 import "./styles.sass";
-import ServerDialog from "@/pages/tools/linux/components/ServerDialog/index.js";
+import ServerDialog from "@/pages/tools/linux/components/ServerDialog";
 import {useState} from "react";
-import {ServerProvider} from "@/common/contexts/Server/index.js";
+import {ServerProvider} from "@/common/contexts/Server";
 
 export const RemoteSFTP = () => {
 

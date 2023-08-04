@@ -4,7 +4,7 @@ import {faBars, faGear} from "@fortawesome/free-solid-svg-icons";
 import {getByPath} from "@/common/routes";
 import {useLocation} from "react-router-dom";
 import {useState} from "react";
-import ColorDialog from "@/common/components/Header/components/ColorDialog/index.js";
+import ColorDialog from "@/common/components/Header/components/ColorDialog";
 
 export const Header = ({open, setOpen, color, setColor}) => {
     const location = useLocation();
