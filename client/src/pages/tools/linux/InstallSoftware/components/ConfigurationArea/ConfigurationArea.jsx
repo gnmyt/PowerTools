@@ -35,6 +35,9 @@ export const ConfigurationArea = ({current}) => {
 
     useEffect(() => {
         return () => {
+            setSteps([]);
+            setCompletedSteps([]);
+            setFailedStep(null);
             connection.disconnect();
         }
     }, []);
