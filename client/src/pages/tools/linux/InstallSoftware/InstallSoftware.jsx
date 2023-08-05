@@ -13,7 +13,7 @@ import {ServerProvider} from "@/common/contexts/Server";
 
 export const InstallSoftware = () => {
     const [currentItem, setCurrentItem] = useState(Software[0].name);
-    const backendAvailable = useContext(StatusContext);
+    const {backendAvailable} = useContext(StatusContext);
     const [serverDialogOpen, setServerDialogOpen] = useState(false);
 
     return (
