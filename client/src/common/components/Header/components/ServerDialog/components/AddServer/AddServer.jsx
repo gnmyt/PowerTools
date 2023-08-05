@@ -28,8 +28,8 @@ export const AddServer = ({addServer}) => {
 
     return (
         <div className="server-info">
-            <input className="input-field" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)}/>
-            <input className="input-field" placeholder="URL" value={url} onChange={(e) => setUrl(e.target.value)}/>
+            <input className="input-field server-input-field" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)}/>
+            <input className="input-field server-input-field" placeholder="URL" value={url} onChange={(e) => setUrl(e.target.value)}/>
             {error && <div className="error">Bitte überprüfe deine Eingaben!</div>}
             <div className="button-right">
                 <Button text="Speichern" onClick={preAddServer}
