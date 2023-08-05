@@ -8,7 +8,7 @@ import {StatusContext} from "@/common/contexts/Status";
 import {useNavigate} from "react-router-dom";
 
 export const Home = () => {
-    const backendAvailable = useContext(StatusContext);
+    const {backendAvailable} = useContext(StatusContext);
     const navigate = useNavigate();
 
     return (
