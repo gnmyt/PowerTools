@@ -1,10 +1,10 @@
 import { io } from 'socket.io-client';
 
-const URL = process.env.NODE_ENV === 'production' ? (localStorage.getItem("url") || "https://tools-api.gnmyt.dev/")
+const getURL = () => process.env.NODE_ENV === 'production' ? (localStorage.getItem("url") || "https://tools-api.gnmyt.dev/")
     : "http://localhost:7182/";
 
 export const createConnection = (type) => {
-    const socket = io(URL, {autoConnect: false});
+    const socket = io(getURL(), {autoConnect: false});
 
     socket.on("connect", () => socket.emit("type", type));
 
