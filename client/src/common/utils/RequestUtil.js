@@ -1,6 +1,5 @@
-const DEFAULT_URL = process.env.NODE_ENV === 'production' ? "https://tools-api.gnmyt.dev/" : "http://localhost:7182/";
-
-const getURL = () => localStorage.getItem("url") || DEFAULT_URL;
+const getURL = () => process.env.NODE_ENV === 'production' ? (localStorage.getItem("url") || "https://tools-api.gnmyt.dev/")
+    : "http://localhost:7182/";
 
 // Run a plain request with all default values
 export const request = (path, method = "GET", body = {}, headers = {}) => {
