@@ -1,0 +1,55 @@
+@import "@/common/styles/colors"
+
+.input-field
+  color: $darker-white
+  border: 2px solid $dark-gray
+  border-radius: 1rem
+  padding: 1rem
+  box-sizing: border-box
+  font-size: 16pt
+  margin-top: 1rem
+  width: 100%
+
+.button-right
+  margin-top: 1rem
+  align-self: flex-end
+
+.button-right svg
+  font-size: 18pt
+
+.server-chooser
+  margin: 1rem
+
+  .current-server-left
+    display: flex
+    align-items: center
+    gap: 0.8rem
+
+    img
+      width: 2rem
+      border-radius: 0.2rem
+
+  .current-server
+    display: flex
+    user-select: none
+    align-items: center
+    justify-content: space-between
+    padding: 0.8rem 1rem
+    gap: 1rem
+    border-radius: 1rem
+    border: 2px solid $dark-gray
+    cursor: pointer
+    transform: scale(1)
+
+  & .current-server:hover
+    border: 2px solid $primary
+
+  & .current-server:active
+    transform: scale(0.96)
+
+@media screen and (max-width: 768px)
+  .server-chooser
+    margin: 0.5rem
+
+  .info-item
+    font-size: 12pt
