@@ -13,7 +13,7 @@ export const StatusProvider = (props) => {
         } else {
             setBackendAvailable(true);
         }
-    });
+    }).catch(() => setBackendAvailable(false));
 
     useEffect(() => {
         updateStatus();
@@ -22,7 +22,7 @@ export const StatusProvider = (props) => {
     }, []);
 
     return (
-        <StatusContext.Provider value={backendAvailable}>
+        <StatusContext.Provider value={{backendAvailable, updateStatus}}>
             {props.children}
         </StatusContext.Provider>
     )
