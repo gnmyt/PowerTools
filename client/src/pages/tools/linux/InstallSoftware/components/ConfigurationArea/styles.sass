@@ -9,7 +9,6 @@
   padding: 1rem 1rem
   display: flex
   flex-direction: column
-  gap: 0.8rem
 
   .package-title
     display: flex
@@ -26,6 +25,21 @@
 
     span
       color: $primary
+
+    svg
+      margin-left: auto
+      font-size: 18pt
+      color: $green
+
+  .description-area
+    max-height: 25rem
+    overflow: hidden
+    overflow-y: scroll
+    transition: max-height 1s ease-in-out
+
+  .description-hidden
+    max-height: 0
+
 
 .align-right
   display: flex
