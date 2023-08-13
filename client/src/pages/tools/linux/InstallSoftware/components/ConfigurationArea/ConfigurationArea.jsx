@@ -1,12 +1,13 @@
 import "./styles.sass";
 import ConfigurationRow from "@/pages/tools/linux/InstallSoftware/components/ConfigurationRow";
 import Button from "@/common/components/Button";
-import {faDownload, faServer} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faDownload, faServer} from "@fortawesome/free-solid-svg-icons";
 import {useContext, useEffect, useState} from "react";
 import {createConnection} from "@/common/utils/SocketUtil.js";
 import LogArea from "@/pages/tools/linux/InstallSoftware/components/ConfigurationArea/components/LogArea";
 import {ToastNotificationContext} from "@/common/contexts/ToastNotification";
 import {ServerContext} from "@/common/contexts/Server";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const ConfigurationArea = ({current}) => {
     const updateToast = useContext(ToastNotificationContext);
@@ -23,6 +24,8 @@ export const ConfigurationArea = ({current}) => {
     const [completedSteps, setCompletedSteps] = useState([]);
     const [failedStep, setFailedStep] = useState(null);
 
+    const [completed, setCompleted] = useState(false);
+
     useEffect(() => {
         if (servers.length > 0 && servers.find((server) => server.id === selectedServer) === undefined)
             setSelectedServer(servers[0].id);
@@ -38,6 +41,7 @@ export const ConfigurationArea = ({current}) => {
             setSteps([]);
             setCompletedSteps([]);
             setFailedStep(null);
+            setCompleted(false);
             connection.disconnect();
         }
     }, []);
@@ -82,6 +86,7 @@ export const ConfigurationArea = ({current}) => {
                 } else if (data.status === "success") {
                     setCompletedSteps(steps => [...steps, data.step]);
                 } else if (data.status === "finished") {
+                    setCompleted(true);
                     disconnect();
                 } else if (data.status === "failed") {
                     setFailedStep(data.step);
@@ -98,25 +103,37 @@ export const ConfigurationArea = ({current}) => {
                 <div className="package-title">
                     <img src={current.icon} alt={current.name}/>
                     <h2>Paket: <span>{current.name}</span></h2>
+                    {completed && <FontAwesomeIcon icon={faCheck}/>}
                 </div>
 
-                {current.configuration.map((configuration) => {
-                    return <ConfigurationRow key={configuration.id} text={configuration.text} icon={configuration.icon}
-                                             type={configuration.type} options={configuration.options}
-                                             value={states.find((s) => s.name === configuration.id)?.value[0]}
-                                             setValue={states.find((s) => s.name === configuration.id)?.value[1]}/>
-                })}
+                <div className={"description-area" + (steps.length !== 0 && !completed ? " description-hidden" : "")}>
+                    {!completed && <>
+                        {current.configuration.map((configuration) => {
+                            return <ConfigurationRow key={configuration.id} text={configuration.text} icon={configuration.icon}
+                                                     type={configuration.type} options={configuration.options} value={states.find((s) => s.name === configuration.id)?.value[0]}
+                                                     setValue={states.find((s) => s.name === configuration.id)?.value[1]}/>
+                        })}
 
-                {servers.length !== 0 && <ConfigurationRow type="select" icon={faServer} text="Server" options={servers.map((server) => {
-                    return {value: server.id, text: (server.name || "Unbenannt") + " (" + server.hostname + ")"}
-                })} value={selectedServer} setValue={setSelectedServer} />}
+                        {servers.length !== 0 && <ConfigurationRow type="select" icon={faServer} text="Server"
+                                                                   options={servers.map((server) => {return {value: server.id, text: (server.name || "Unbenannt") + " (" + server.hostname + ")"}})} value={selectedServer}
+                                                                   setValue={setSelectedServer}/>}
 
-                <div className="align-right">
-                    <Button icon={faDownload} text={current.buttonText || "Installieren"} onClick={update} />
+                        <div className="align-right">
+                            <Button icon={faDownload} text={current.buttonText || "Installieren"} onClick={update}/>
+                        </div>
+                    </>}
+
+                    {completed && current.configuration.map((configuration) => {
+                        return configuration.type !== "text" && <ConfigurationRow key={configuration.id} text={configuration.text} icon={configuration.icon}
+                                                    type={configuration.type} options={configuration.options} value={states.find((s) => s.name === configuration.id)?.value[0]}
+                                                    setValue={states.find((s) => s.name === configuration.id)?.value[1]} disabled/>
+                    })}
+
                 </div>
             </div>
 
-            {steps.length !== 0 && <LogArea completedSteps={completedSteps} failedStep={failedStep} steps={steps} />}
+            {steps.length !== 0 && !completed &&
+                <LogArea completedSteps={completedSteps} failedStep={failedStep} steps={steps}/>}
         </div>
     );
 
