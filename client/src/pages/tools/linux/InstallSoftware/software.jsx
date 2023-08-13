@@ -2,6 +2,7 @@ import UpdateImage from "./images/update.webp";
 import MySpeedImage from "./images/myspeed.webp";
 import DockerImage from "./images/docker.webp";
 import NextCloudImage from "./images/nextcloud.webp";
+import MCDashImage from "./images/mcdash.webp";
 import PterodactylImage from "./images/pterodactyl.webp";
 import {
     faBox, faEnvelope,
@@ -29,6 +30,19 @@ export default [
             {type: "input", id: "folder", text: "Ort", icon: faFolder, value: "/opt/myspeed"},
             {type: "select", id: "environment", text: "Umgebung", icon: faBox, options: ["Stabil", "Entwicklung"],
                 value: "Stabil"}
+        ]
+    },
+    {
+        name: "MCDash",
+        icon: MCDashImage,
+        configuration: [
+            {type: "text", id: "text", text: <>Ältere Versionen verfügbar im <a href="https://create.mcdash.gnmyt.dev" target="_blank">Creator</a></>, icon: faInfoCircle},
+            {type: "select", id: "software", text: "Software", icon: faBox, options: ["Spigot", "Paper", "Purpur"],
+                value: "Paper"},
+            {type: "input", id: "port", text: "Port", icon: faGlobe, value: "25565"},
+            {type: "input", id: "panel", text: "Panel", icon: faGlobe, value: "7867"},
+            {type: "input", id: "username", text: "Name", icon: faUser, value: "CONSOLE"},
+            {type: "input", id: "password", text: "Passwort", icon: faKey, value: () => Math.random().toString(36).slice(-8)},
         ]
     },
     {
