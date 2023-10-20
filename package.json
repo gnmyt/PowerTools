@@ -17,7 +17,7 @@
     "ssh2": "^1.14.0"
   },
   "devDependencies": {
-    "concurrently": "^8.2.1",
+    "concurrently": "^8.2.2",
     "nodemon": "^3.0.1"
   }
 }
