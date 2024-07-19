@@ -3,9 +3,9 @@ import GermanyFlag from "./flags/de.webp";
 export default [
     {
         "url": "https://tools-api.gnmyt.dev/",
-        "name": "Hauptserver (Derzeit offline)",
+        "name": "Hauptserver (Offline)",
         "provider": "Mathias Wagner\nmathias@gnmyt.dev",
-        "location": "Offline. Bald Verfügbar",
+        "location": "Derzeit offline.\nBald Verfügbar",
         "img": GermanyFlag
     },
     {
