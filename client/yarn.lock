@@ -2409,10 +2409,10 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.0.tgz#f67fa67c94da8f4d0cfff981aee4118064199b8f"
   integrity sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==
 
-qrcode.react@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/qrcode.react/-/qrcode.react-3.1.0.tgz#5c91ddc0340f768316fbdb8fff2765134c2aecd8"
-  integrity sha512-oyF+Urr3oAMUG/OiOuONL3HXM+53wvuH3mtIWQrYmsXoAq0DkvZp2RYUWFSMFtbdOpuS++9v+WAkzNVkMlNW6Q==
+qrcode.react@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/qrcode.react/-/qrcode.react-4.0.0.tgz#fd394eae8fe327ed325a0c9eadf270ec41ba9d18"
+  integrity sha512-gbyNYYAsBsV4wH+hEdlqrQb7uPC1jYrOJlZTqvnS1spaiwGC1/syE1q+hfUeAGDBQcLRqplhrcKxS3xjEbzCIQ==
 
 queue-microtask@^1.2.2:
   version "1.2.3"
